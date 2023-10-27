@@ -4,22 +4,38 @@
         <meta charset="UTF-8">
         <title>index6</title>
     </head>
+    <style>
+        .hide
+        {
+            display: none;
+        }
+    </style>
     <body>
         <form id="for">
-            <b>Выберите товар</b>
-            <br>
-            <select id="order">
-                <option value="Bloody" Price="1500">Bloody 1500(мышь)</option>
-                <option value="HyperX" Price="4500">Hyperx 4500(нушники)</option>
-                <option value="Logitech" Price="5000">Logitech 5000(клвтура)</option>
-                <option value="Acer" Price="30000">Acer 30000(монитор)</option>
-            </select>
-            <br>
             Количество товара:
             <input type="text" id="count" placeholder="Количество товара">
             <br>
-            <button type="submit" id="score">Подтвердить</button>
-            <br>
+            <div><input type="radio" name="a" id="article1" Price="1500">Bloody</div>
+            <div><input type="radio" name="a" id="article2" Price="4500">Hyperx</div>
+            <div><input type="radio" name="a" id="article3" Price="5000">Logipech</div>
+            <div id="start" class="start hide">
+                <select id="items" name="items" title="title">
+                    <option Price="500">с крутым мекарафонам!!!</option>
+                    <option Price="200">без крутова мекрафона но с амбершуриком!!!</option>
+                    <option Price="1500">с джунгариком!!!</option>
+                </select>
+            </div>
+            <div id="cbox" class="cbox hide">
+                <label>
+                    <input type="checkbox" name="cbox" id="cbox1" Price="500">Смешные кейкапы 500
+                </label>
+                <label>
+                    <input type="checkbox" name="cbox" id="cbox2" Price="750">падсветка как у гтр 750
+                </label>
+                <label>
+                    <input type="checkbox" name="cbox" id="cbox3" Price="50000">клавиатура без нумпада
+                </label>
+            </div>
             Стоимость заказа:
             <div id="result"></div>
         </form>
