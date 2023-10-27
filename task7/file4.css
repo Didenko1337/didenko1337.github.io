@@ -1,0 +1,42 @@
+body {
+    background-color: slateblue;
+    color: gainsboro;
+  }
+  .content {
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    max-width: 1500px;
+    box-sizing: border-box;
+}
+.slick-slide .image {
+    padding: 10px;
+    margin: 0 auto;
+}
+.slick-slide img {
+    width: 25vw;
+    height: 25vw;
+
+    margin: 0 auto;
+  }
+.slick-slide img.slick-loading {
+    border: 0;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    color: cyan;
+    font-size: 30px;
+}
+
+.slick-dots
+{
+    margin: 0 20px;
+    border-color: azure;
+}
+    
+h1
+{
+    text-align:center;
+}
