@@ -2,19 +2,25 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>index8</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  </style>
+  <title>Form Popup</title>
 </head>
-<button id="openPopupBtn">Обратная связь</button>
+<body>
+  <button id="openPopup">Открыть форму обратной связи</button>
 
-<div id="feedbackPopup" class="popup">
-  <form id="feedbackForm">
-    <input type="text" id="fullName" placeholder="ФИО">
-    <input type="email" id="email" placeholder="Email">
-    <input type="tel" id="phone" placeholder="Телефон">
-    <input type="text" id="organization" placeholder="Организация">
-    <textarea id="message" placeholder="Сообщение"></textarea>
-    <label for="agree">Согласие с политикой обработки персональных данных</label>
-    <input type="checkbox" id="agree">
-    <button type="submit" id="sendFeedback">Отправить</button>
-  </form>
-</div>
+  <div id="popup">
+    <form id="feedbackForm">
+      <input type="text" id="fullName" placeholder="ФИО" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Телефон" required>
+      <input type="text" id="organization" placeholder="Организация">
+      <textarea id="message" placeholder="Сообщение" required></textarea>
+      <label for="agree">Я согласен с политикой обработки персональных данных</label>
+      <input type="checkbox" id="agree" required>
+      <button type="submit">Отправить</button>
+    </form>
+    <div id="responseMessage"></div>
+  </div>
+</body>
