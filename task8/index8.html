@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f7f7f7;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none;
+    }
+
+    #popup input, #popup textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #popup button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #popup button:hover {
+      background-color: #45a049;
+    }
+
+    #responseMessage {
+      margin-top: 10px;
+    }
+
+    #openPopup {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #openPopup:hover {
+      background-color: #45a049;
+    }
   </style>
-  <title>Form Popup</title>
+  <title>index8.html</title>
 </head>
 <body>
   <button id="openPopup">Открыть форму обратной связи</button>
@@ -23,4 +70,69 @@
     </form>
     <div id="responseMessage"></div>
   </div>
+
+  <script>
+    document.getElementById('openPopup').addEventListener('click', function() {
+      document.getElementById('popup').style.display = 'block';
+      history.pushState({ page: 'popup' }, 'Form Popup', '/form-popup');
+    });
+
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        organization: document.getElementById('organization').value,
+        message: document.getElementById('message').value
+      };
+
+      fetch('https://formcarry.com/s/96HtVEptOQ', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Ошибка при отправке данных формы');
+      })
+      .then(data => {
+        document.getElementById('responseMessage').textContent = 'Форма отправлена успешно!';
+        document.getElementById('feedbackForm').reset();
+      })
+      .catch(error => {
+        document.getElementById('responseMessage').textContent = 'Произошла ошибка при отправке формы: ' + error.message;
+      });
+
+      localStorage.setItem('fullName', formData.fullName);
+      localStorage.setItem('email', formData.email);
+      localStorage.setItem('phone', formData.phone);
+      localStorage.setItem('organization', formData.organization);
+      localStorage.setItem('message', formData.message);
+    });
+
+    window.addEventListener('popstate', function(event) {
+      if (event.state && event.state.page === 'popup') {
+        document.getElementById('popup').style.display = 'block';
+      } else {
+        document.getElementById('popup').style.display = 'none';
+      }
+    });
+
+    document.getElementById('fullName').value = localStorage.getItem('fullName') || '';
+    document.getElementById('email').value = localSt
+    orage.getItem('email') || '';
+        document.getElementById('phone').value = localStorage.getItem('phone') || '';
+        document.getElementById('organization').value = localStorage.getItem('organization') || '';
+        document.getElementById('message').value = localStorage.getItem('message') || '';
+    </script>
 </body>
+</html>
+
+
